@@ -18,7 +18,7 @@ class Instancia:
     def __init__(self):
         self.cores = {} #cores do personagens
         self.posicao = Ponto (0,0,0) 
-        self.escala = Ponto (1,1,1)
+        self.escala = Ponto (5,5,5)
         self.rotacao:float = 0.0
         self.modelo = []
         self.t = 0.0
@@ -42,8 +42,10 @@ class Instancia:
         glRotatef(self.rotacao, 0, 0, 1)
         glScalef(self.escala.x, self.escala.y, self.escala.z)
         for i in self.modelo:
-            
-            i.desenhaPoligono()
+            if i.cor != 1:
+                cor = self.cores[i.cor]
+                glColor3f(cor.r,cor.b,cor.g) 
+                i.desenhaQuadrado()
         glPopMatrix()
 
     def le_personagem(self, caminho):

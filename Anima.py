@@ -223,7 +223,7 @@ def CriaInstancias():
     Universo.append(Instancia())
     mt_modelo, mt =  Universo[0].le_personagem('personagens\per1.txt')
     Universo[0].monta_modelo(mt_modelo, mt)
-    Universo[0].rotacao = 45
+    Universo[0].rotacao = 0
      
 
 
