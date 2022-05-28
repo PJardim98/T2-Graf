@@ -41,7 +41,9 @@ class Instancia:
         glTranslatef(self.posicao.x, self.posicao.y, 0)
         glRotatef(self.rotacao, 0, 0, 1)
         glScalef(self.escala.x, self.escala.y, self.escala.z)
-        self.modelo()
+        for i in self.modelo:
+            
+            i.desenhaPoligono()
         glPopMatrix()
 
     def le_personagem(self, caminho):
@@ -75,8 +77,8 @@ class Instancia:
             for j in range(matriz[1]):
                 p = Polygon()
                 p.monta_quad(j-(matriz[1]/2), matriz[0]-i-(matriz[0]/2), delta)
-                print(j-(matriz[1]/2), matriz[0]-i-(matriz[0]/2), delta)
                 self.modelo.append(p)
+                p.cor = modelo[i][j]
         
         
 

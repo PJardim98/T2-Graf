@@ -29,9 +29,7 @@ from Curva import *
 # ***********************************************************************************
 
 # Modelos de Objetos
-MeiaSeta = Polygon()
-Mastro = Polygon()
-Personagem = Polygon()
+Personagem = []
 
 # ***********************************************************************************
 # Pontos de controle de uma curva Bezier
@@ -97,19 +95,7 @@ def reshape(w,h):
     glLoadIdentity()
 
 # ***********************************************************************************
-def DesenhaMastro():
-    Mastro.desenhaPoligono()
 
-# ***********************************************************************************
-def DesenhaSeta():
-    glPushMatrix()
-    MeiaSeta.desenhaPoligono()
-    glScaled(1,-1, 1)
-    MeiaSeta.desenhaPoligono()
-    glPopMatrix()
-
-
-# **************************************************************
 def DesenhaEixos():
     global Min, Max
 
@@ -155,10 +141,10 @@ def display():
     glColor3f(1,1,1) # R, G, B  [0..1]
     DesenhaEixos()
     glColor3f(1,1,0)
-    AtualizaUniverso()
+    #AtualizaUniverso()
     DesenhaUniverso()
     glColor3f(1,0,0)
-    TracaBezier3Pontos()
+    #TracaBezier3Pontos()
 
     glutSwapBuffers()
 
@@ -235,11 +221,11 @@ def CriaInstancias():
     global Universo
 
     Universo.append(Instancia())
-    Universo[0].modelo = DesenhaMastro
+    mt_modelo, mt =  Universo[0].le_personagem('personagens\per1.txt')
+    Universo[0].monta_modelo(mt_modelo, mt)
     Universo[0].rotacao = 45
      
-    Universo.append(Instancia())
-    Universo[1].modelo = DesenhaSeta
+
 
     
     # Criar aqui as demais instancias
@@ -254,13 +240,14 @@ def CriaCurvas():
 # ***********************************************************************************
 def init():
     global Min, Max
-    # Define a cor do fundo da tela (AZUL)
+    # Define a cor do fundo da tela (PRETO)
     glClearColor(0, 0, 0, 1)
 
-    CarregaModelos()
+
+    #CarregaModelos()
     CriaInstancias()
-    CriaCurvas()
-    d:float = 7
+    #CriaCurvas()
+    d:float = 100
     Min = Ponto(-d,-d)
     Max = Ponto(d,d)
 
